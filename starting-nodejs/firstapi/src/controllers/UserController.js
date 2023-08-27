@@ -33,33 +33,21 @@ module.exports = {
 
   createUser(req, res) {
 
-    let body = '';
+    const { body } = req;
 
-    // Aqui estamos recebendo os dados da requisição
-    // e concatenando o body da requisição com o chunk atual
-    req.on('data', (chunk) => {
-      body += chunk;
-    });
+    const lastUserId = users[users.length - 1].id;
+    const newUser = {
+      id: lastUserId + 1,
+      name: body.name,
+      job: body.job,
+    };
 
-    // Aqui estamos finalizando a requisição
-    // e enviando uma resposta para o cliente
-    req.on('end', () => {
-      body = JSON.parse(body);
+    users.push(newUser);
 
-      const lastUserId = users[users.length - 1].id;
-      const newUser = {
-        id: lastUserId + 1,
-        name: body.name,
-        job: body.job,
-      };
-
-      users.push(newUser);
-
-      res.send(200, {
-        message: 'User created',
-        type: 'POST',
-        user: body,
-      });
+    res.send(200, {
+      message: "User created",
+      type: "POST",
+      user: body,
     });
 
   },
