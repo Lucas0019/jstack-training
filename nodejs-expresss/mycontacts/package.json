@@ -5,7 +5,14 @@
   "main": "src/index.js",
   "author": "Lucas Xavier",
   "license": "MIT",
+  "scripts": {
+    "postinstall": "ls",
+    "dev": "nodemon src/index.js"
+  },
   "dependencies": {
     "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
   }
 }
