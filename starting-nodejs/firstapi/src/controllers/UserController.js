@@ -30,4 +30,37 @@ module.exports = {
 
     res.send(200, user);
   },
+
+  createUser(req, res) {
+
+    let body = '';
+
+    // Aqui estamos recebendo os dados da requisição
+    // e concatenando o body da requisição com o chunk atual
+    req.on('data', (chunk) => {
+      body += chunk;
+    });
+
+    // Aqui estamos finalizando a requisição
+    // e enviando uma resposta para o cliente
+    req.on('end', () => {
+      body = JSON.parse(body);
+
+      const lastUserId = users[users.length - 1].id;
+      const newUser = {
+        id: lastUserId + 1,
+        name: body.name,
+        job: body.job,
+      };
+
+      users.push(newUser);
+
+      res.send(200, {
+        message: 'User created',
+        type: 'POST',
+        user: body,
+      });
+    });
+
+  },
 }
