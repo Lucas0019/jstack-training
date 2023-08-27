@@ -4,7 +4,7 @@
   * regra de negócio da aplicação com base no que foi solicitado.
 */
 
-const users = require('../mocks/users');
+let users = require('../mocks/users');
 const sortedData = require('../utils/orderData');
 
 module.exports = {
@@ -51,4 +51,53 @@ module.exports = {
     });
 
   },
+
+  updateUser(req, res) {
+
+    let { id } = req.params;
+    const { name, job } = req.body;
+
+    id = Number(id);
+
+    const userExists = users.find((user) => user.id === id);
+
+    if (!userExists) {
+      return res.send(400, { error: 'User not found' });
+    }
+
+    users = users.map((user) => {
+      if (user.id === id) {
+        return {
+          ...user,
+          name,
+          job,
+        }
+      }
+
+      return user;
+    });
+
+    res.send(200, { 
+      message: 'User updated', 
+      type: 'PUT', 
+      user: { id, name } 
+    });
+
+  },
+
+  deleteUser(req, res) {
+
+    let { id } = req.params;
+
+    id = Number(id);
+
+    users = users.filter((user) => user.id !== id);
+
+    res.send(200, { 
+      message: 'User deleted', 
+      type: 'DELETE', 
+      users 
+    });
+
+  }
 }
