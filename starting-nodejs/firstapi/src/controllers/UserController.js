@@ -5,7 +5,6 @@
 */
 
 const users = require('../mocks/users');
-const products = require('../mocks/products');
 const sortedData = require('../utils/orderData');
 
 module.exports = {
@@ -19,13 +18,19 @@ module.exports = {
     res.writeHead(200, {'Content-Type': 'application/json'})
     res.end(JSON.stringify(sortedUsers));
   },
-  listProducts(req, res) {
-    console.log(req.query);
 
-    const { order } = req.query;
-    const sortedProducts = sortedData.orderData(products, order);
+  getUserById(req, res) {
 
-    res.writeHead(200, {'Content-Type': 'application/json'})
-    res.end(JSON.stringify(sortedProducts));
+    const { id } = req.params;
+
+    const user = users.find((user) => user.id === Number(id));
+
+    if (!user) {
+      res.writeHead(400, {'Content-Type': 'application/json'})
+      res.end(JSON.stringify({ error: 'User not found' }));
+    } else {
+      res.writeHead(200, {'Content-Type': 'application/json'})
+      res.end(JSON.stringify(user));
+    }
   },
 }
