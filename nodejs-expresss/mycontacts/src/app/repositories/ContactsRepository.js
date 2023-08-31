@@ -6,12 +6,25 @@
   * de CRUD (Create, Read, Update e Delete) no banco de dados.
 */
 
-const contacts = require('../mocks/contacts');
+let { contacts } = require('../mocks/contacts');
 
 class ContactsRepository {
   findAll() {
     return new Promise((resolve) => {
       resolve(contacts);
+    });
+  }
+
+  findById(id) {
+    return new Promise((resolve) => resolve(
+      contacts.find((contact) => contact.id === id),
+    ));
+  }
+
+  delete(id) {
+    return new Promise((resolve) => {
+      contacts = contacts.filter((contact) => contact.id !== id);
+      resolve();
     });
   }
 
