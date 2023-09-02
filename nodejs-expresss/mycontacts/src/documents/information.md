@@ -87,3 +87,93 @@ Podem ser utilizados para:
 
  Para que um middleware execute outras lógicas, é necessário que ele
  execute a função next.
+
+### Docker
+
+O Docker é uma plataforma de código aberto que facilita a criação e
+administração de ambientes isolados. Esses ambientes isolados são
+chamados de containers e podem ser criados a partir de imagens.
+
+**Imagem:** É um modelo somente leitura usado para criar containers.
+
+**Container:** É uma instância de uma imagem. É possível criar, iniciar, parar,
+ mover ou deletar um container usando a API ou a CLI do Docker.
+
+**Dockerfile:** É um arquivo de texto que contém todos os comandos que um
+usuário pode chamar na linha de comando para montar uma imagem.
+
+### Postgres SQL ( Banco de Dados Relacional )
+
+O Postgres é um banco de dados relacional de código aberto que utiliza
+a linguagem SQL para realizar consultas. Ele é um dos bancos de dados
+relacionais mais utilizados no mundo e é muito utilizado em aplicações
+que precisam de um banco de dados com alta performance e confiabilidade.
+
+**schema:** É um conjunto de tabelas, views, funções, etc. que pertencem
+a um banco de dados.
+
+**tabela:** É um conjunto de linhas e colunas que armazenam dados de uma
+entidade.
+
+**coluna:** É uma propriedade de uma tabela que armazena um tipo de dado.
+
+**linha:** É um registro de uma tabela que armazena os dados de uma
+entidade.
+
+**chave primária:** É uma coluna que identifica unicamente uma linha de
+uma tabela.
+
+**chave estrangeira:** É uma coluna que referencia a chave primária de
+outra tabela.
+
+**índice:** É uma estrutura de dados que melhora a performance de
+consultas em uma tabela.
+
+**view:** É uma tabela virtual que armazena o resultado de uma consulta.
+
+**trigger:** É um procedimento que é executado automaticamente quando
+ocorre um evento em uma tabela.
+
+
+#### Comandos Postgres Terminal
+
+```bash
+# Acessar o container do Postgres
+docker exec -it postgres psql -U postgres
+
+# Listar bancos de dados
+\l
+
+# Conectar a um banco de dados
+\c <nome_do_banco>
+\c mycontacts
+
+# Listar tabelas
+\dt
+
+# Listar funções
+\df
+
+# Listar views
+\dv
+
+# Listar índices
+\di
+
+# Listar triggers
+\dg
+
+# Listar comandos
+\?
+
+# Sair do terminal do Postgres
+\q
+```
+
+```bash
+          List of relations
+ Schema |    Name    | Type  | Owner
+--------+------------+-------+-------
+ public | categories | table | root
+
+```
