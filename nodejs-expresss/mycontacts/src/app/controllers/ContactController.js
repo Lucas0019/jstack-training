@@ -23,8 +23,30 @@ class ContactController {
     res.json(contact);
   }
 
-  store() {
-    // Criar novo registro
+  // Criar novo registro
+  async store(req, res) {
+    const { name, email, phone, category_id } = req.body;
+
+    if (!name) {
+      // 400: Bad request
+      return res.status(400).json({ error: 'Name is required' });
+    }
+
+    const contactExists = await ContactsRepository.findByEmail(email);
+
+    if (contactExists) {
+      // 400: Bad request
+      return res.status(400).json({ error: 'This e-mail is already in use' });
+    }
+
+    const contact = await ContactsRepository.create({
+      name,
+      email,
+      phone,
+      category_id,
+    });
+
+    res.json(contact);
   }
 
   update() {
