@@ -1,7 +1,6 @@
 const ContactsRepository = require('../repositories/ContactsRepository');
 
 class ContactController {
-
   // Listar todos os registros
   async index(req, res) {
     const contacts = await ContactsRepository.findAll();
@@ -25,7 +24,9 @@ class ContactController {
 
   // Criar novo registro
   async store(req, res) {
-    const { name, email, phone, category_id } = req.body;
+    const {
+      name, email, phone, category_id,
+    } = req.body;
 
     if (!name) {
       // 400: Bad request
@@ -67,7 +68,7 @@ class ContactController {
     await ContactsRepository.delete(id);
 
     // 204: No content
-    res.sendStatus(204)
+    res.sendStatus(204);
   }
 }
 

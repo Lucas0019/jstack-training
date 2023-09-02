@@ -21,9 +21,8 @@ const contacts = [
     email: 'maria.doe@email.com',
     phone: '(00) 0000-0000',
     category_id: v4(),
-  }
+  },
 
-]
-
+];
 
 module.exports = { contacts };

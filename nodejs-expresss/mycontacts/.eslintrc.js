@@ -4,14 +4,19 @@ module.exports = {
     es2021: true,
     node: true,
   },
-  extends: 'airbnb-base',
-  overrides: [
+  extends: [
+    'airbnb-base',
   ],
   parserOptions: {
-    ecmaVersion: 'latest',
+    ecmaVersion: 13,
   },
   rules: {
+    'linebreak-style': ['error', process.platform === 'win32' ? 'windows' : 'unix'],
     'class-methods-use-this': 'off',
-    'eslint-disable-next-line': 'no-console',
+    'consistent-return': 'off',
+    'no-promise-executor-return': 'off',
+    'prefer-const': 'off',
+    camelcase: 'off',
+    'no-unused-vars': ['error', { argsIgnorePattern: 'next' }],
   },
 };

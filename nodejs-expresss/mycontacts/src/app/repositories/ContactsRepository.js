@@ -15,7 +15,6 @@ class ContactsRepository {
     ));
   }
 
-
   findByEmail(email) {
     return new Promise((resolve) => resolve(
       contacts.find((contact) => contact.email === email),
@@ -29,7 +28,9 @@ class ContactsRepository {
     });
   }
 
-  create({ name, email, phone, category_id  }) {
+  create({
+    name, email, phone, category_id,
+  }) {
     return new Promise((resolve) => {
       const newContact = {
         id: v4(),
@@ -44,7 +45,6 @@ class ContactsRepository {
       resolve(newContact);
     });
   }
-
 }
 
 // Parttern Singleton => Retorna sempre a mesma instância
