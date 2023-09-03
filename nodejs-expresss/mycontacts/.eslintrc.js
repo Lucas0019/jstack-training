@@ -18,5 +18,10 @@ module.exports = {
     'prefer-const': 'off',
     camelcase: 'off',
     'no-unused-vars': ['error', { argsIgnorePattern: 'next' }],
+    'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
+    'eslint-disable-next-line': 'off',
+    'no-console': 'off',
+    'no-underscore-dangle': 'off',
+    'no-param-reassign': 'off',
   },
 };
