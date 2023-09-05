@@ -92,13 +92,6 @@ class ContactController {
   async delete(req, res) {
     const { id } = req.params;
 
-    const contact = await ContactsRepository.findById(id);
-
-    if (!contact) {
-      // 404: Not found
-      return res.status(404).json({ error: 'User not found' });
-    }
-
     await ContactsRepository.delete(id);
 
     // 204: No content
