@@ -13,7 +13,7 @@ const client = new Client({
 client.connect();
 
 // Exportando o client para ser usado em outros arquivos
-exports.query = async (query) => {
-  const { rows } = await client.query(query);
+exports.query = async (query, values) => {
+  const { rows } = await client.query(query, values);
   return rows;
 };
