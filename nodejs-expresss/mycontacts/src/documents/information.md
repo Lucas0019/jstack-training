@@ -177,3 +177,49 @@ docker exec -it postgres psql -U postgres
  public | categories | table | root
 
 ```
+
+### SQl Injection
+
+A injeção de SQL é uma vulnerabilidade que permite que um invasor execute
+comandos SQL arbitrários em um banco de dados. Essa vulnerabilidade
+ocorre quando o usuário insere dados não confiáveis em uma consulta SQL.
+
+**Exemplo Errado de caso criação de usuário:**
+
+```sql
+async create({
+    name, email, phone, category_id,
+  }) {
+    const [row] = await db.query(`INSERT INTO contacts(name, email, phone, category_id)
+      VALUES ('${name}', '${email}', '${phone}', '${category_id}')
+      RETURNING *
+    `);
+
+    return row;
+  }
+```
+
+**Exemplo Correto de caso criação de usuário:**
+
+```sql
+ async create({
+    name, email, phone, category_id,
+  }) {
+    const [row] = await db.query(`INSERT INTO contacts(name, email, phone, category_id)
+      VALUES ($1, $2, $3, $4)
+      RETURNING *
+    `, [name, email, phone, category_id]);
+
+    return row;
+  }
+```
+
+No cenário acima, o invasor pode inserir um comando SQL no campo name
+e executar comandos SQL arbitrários no banco de dados. Podendo até
+mesmo deletar o banco de dados.
+
+**Exemplo de ataque:**
+
+```sql
+''); DROP TABLE contacts; --
+```
