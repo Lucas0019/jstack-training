@@ -1,4 +1,5 @@
 const CategoriesRepository = require('../repositories/CategoriesRepository');
+require('express-async-errors');
 
 class CategoryControler {
   // Lista todas as categorias

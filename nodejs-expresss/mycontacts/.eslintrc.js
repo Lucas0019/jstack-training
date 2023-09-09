@@ -23,5 +23,6 @@ module.exports = {
     'no-console': 'off',
     'no-underscore-dangle': 'off',
     'no-param-reassign': 'off',
+    'eslint-disable-next-line no-unused-vars': 'off',
   },
 };
