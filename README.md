@@ -1,1 +1,3 @@
-# jstack-training
+# Jstack Training
+
+Repo for Jstack training.
