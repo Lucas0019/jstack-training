@@ -1,0 +1,75 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+
+  --color-bg-light: #ffffff;
+  --color-text-light: #000000;
+
+  --color-bg-dark: #1e1e1e;
+  --color-text-dark: #ffffff;
+}
+
+html,
+body {
+  font-family: var(--font-family);
+  line-height: 1.5;
+  background-color: var(--color-bg-light);
+  color: var(--color-text-light);
+  min-height: 100vh;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Estilo para temas */
+.light {
+  background-color: var(--color-bg-light);
+  color: var(--color-text-light);
+}
+
+.dark {
+  background-color: var(--color-bg-dark);
+  color: var(--color-text-dark);
+}
+
+button {
+  margin-top: 10px;
+  padding: 6px 12px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: #000;
+  color: #fff;
+  transition: background 0.2s ease;
+}
+
+button:hover {
+  background-color: #424242;
+}
+
+input[type="checkbox"] {
+  margin-right: 5px;
+}
+
+header {
+  padding: 1rem;
+}
+
+main {
+  padding: 1rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 0.5rem;
+}
+
+[data-actions-article] {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
