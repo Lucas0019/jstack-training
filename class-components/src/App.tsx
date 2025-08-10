@@ -31,6 +31,41 @@ export class App extends Component<object, AppState> {
     };
   }
 
+  // Native Lifecycle Methods
+  componentDidMount() {
+    console.log("App mounted");
+  }
+
+  componentDidUpdate(prevProps: object, prevState: AppState) {
+    console.log("App updated", {
+      currentState: this.state,
+      prevProps,
+      prevState,
+    });
+  }
+
+  componentDidCatch(error: Error, errorInfo: React.ErrorInfo): void {
+    console.log("componentDidCatch | App caught error", error, errorInfo);
+  }
+
+  shouldComponentUpdate(
+    nextProps: object,
+    nextState: Readonly<AppState>,
+    nextContext: object
+  ): boolean {
+    console.log("shouldComponentUpdate | App should update", {
+      nextProps,
+      nextState,
+      nextContext,
+    });
+    return true;
+  }
+
+  componentWillUnmount() {
+    console.log("componentWillUnmount | App unmounted");
+  }
+
+  // Custom Methods
   handleRefresh = () => {
     this.setState((prevState) => ({
       articles: [
